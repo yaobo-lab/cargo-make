@@ -423,8 +423,7 @@ fn run_bad_subcommand() {
     let global_config = GlobalConfig::new();
     let cli_args = cli_parser::parse_args(
         &global_config,
-        &"make".to_string(),
-        true,
+        &"makers".to_string(),
         Some(vec!["bad"]),
         create_cli(&global_config, cliparser::types::CliSpec::new(), true),
     );
@@ -443,11 +442,9 @@ fn run_valid() {
     let global_config = GlobalConfig::new();
     let cli_args = cli_parser::parse_args(
         &global_config,
-        &"make".to_string(),
-        true,
+        &"makers".to_string(),
         Some(vec![
-            "cargo",
-            "make",
+            "makers",
             "--makefile",
             "./examples/dependencies.toml",
             "-l",
@@ -473,9 +470,8 @@ fn run_with_global_config() {
     global_config.disable_color = Some(true);
     let cli_args = cli_parser::parse_args(
         &global_config,
-        &"make".to_string(),
-        true,
-        Some(vec!["cargo", "make"]),
+        &"makers".to_string(),
+        Some(vec!["makers"]),
         create_cli(&global_config, CliSpec::new(), true),
     )
     .unwrap();
@@ -489,11 +485,9 @@ fn run_log_level_override() {
     let global_config = GlobalConfig::new();
     let cli_args = cli_parser::parse_args(
         &global_config,
-        &"make".to_string(),
-        true,
+        &"makers".to_string(),
         Some(vec![
-            "cargo",
-            "make",
+            "makers",
             "--makefile",
             "./examples/dependencies.toml",
             "-t",
@@ -515,11 +509,9 @@ fn run_set_env_values() {
     let global_config = GlobalConfig::new();
     let cli_args = cli_parser::parse_args(
         &global_config,
-        &"make".to_string(),
-        true,
+        &"makers".to_string(),
         Some(vec![
-            "cargo",
-            "make",
+            "makers",
             "--env",
             "ENV1_TEST=TEST1",
             "--env",
@@ -552,11 +544,9 @@ fn run_set_env_via_file() {
     let global_config = GlobalConfig::new();
     let cli_args = cli_parser::parse_args(
         &global_config,
-        &"make".to_string(),
-        true,
+        &"makers".to_string(),
         Some(vec![
-            "cargo",
-            "make",
+            "makers",
             "--env-file=./examples/test.env",
             "--verbose",
             "--disable-check-for-updates",
@@ -583,11 +573,9 @@ fn run_set_env_both() {
     let global_config = GlobalConfig::new();
     let cli_args = cli_parser::parse_args(
         &global_config,
-        &"make".to_string(),
-        true,
+        &"makers".to_string(),
         Some(vec![
-            "cargo",
-            "make",
+            "makers",
             "--env-file=./examples/test.env",
             "--env",
             "ENV4_TEST=TEST4",
@@ -626,11 +614,9 @@ fn run_print_only() {
     let global_config = GlobalConfig::new();
     let cli_args = cli_parser::parse_args(
         &global_config,
-        &"make".to_string(),
-        true,
+        &"makers".to_string(),
         Some(vec![
-            "cargo",
-            "make",
+            "makers",
             "--makefile",
             "./examples/dependencies.toml",
             "--skip-tasks",
@@ -656,11 +642,9 @@ fn run_diff_steps() {
     let global_config = GlobalConfig::new();
     let cli_args = cli_parser::parse_args(
         &global_config,
-        &"make".to_string(),
-        true,
+        &"makers".to_string(),
         Some(vec![
-            "cargo",
-            "make",
+            "makers",
             "--makefile",
             "./examples/dependencies.toml",
             "-t",
@@ -683,11 +667,9 @@ fn run_protected_flow_example() {
     let global_config = GlobalConfig::new();
     let cli_args = cli_parser::parse_args(
         &global_config,
-        &"make".to_string(),
-        true,
+        &"makers".to_string(),
         Some(vec![
-            "cargo",
-            "make",
+            "makers",
             "--makefile",
             "./examples/on_error.toml",
         ]),
@@ -703,11 +685,9 @@ fn run_no_task_args() {
     let global_config = GlobalConfig::new();
     let cli_args = cli_parser::parse_args(
         &global_config,
-        &"make".to_string(),
-        true,
+        &"makers".to_string(),
         Some(vec![
-            "cargo",
-            "make",
+            "makers",
             "--disable-check-for-updates",
             "empty",
         ]),
@@ -727,11 +707,9 @@ fn run_set_task_args() {
     let global_config = GlobalConfig::new();
     let cli_args = cli_parser::parse_args(
         &global_config,
-        &"make".to_string(),
-        true,
+        &"makers".to_string(),
         Some(vec![
-            "cargo",
-            "make",
+            "makers",
             "--disable-check-for-updates",
             "empty",
             "arg1",
@@ -757,10 +735,9 @@ fn run_set_task_var_args() {
     let global_config = GlobalConfig::new();
     let cli_args = cli_parser::parse_args(
         &global_config,
-        &"make".to_string(),
-        true,
+        &"makers".to_string(),
         Some(vec![
-            "cargo", "make", "empty", "abc", "-p", "foo/bar/", "def",
+            "makers", "empty", "abc", "-p", "foo/bar/", "def",
         ]),
         create_cli(&global_config, CliSpec::new(), true),
     )

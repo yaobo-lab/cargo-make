@@ -80,6 +80,6 @@ mod toolchain;
 mod version;
 
 /// Handles the command line arguments and executes the runner.
-pub fn run_cli(command_name: String, sub_command: bool) -> Result<CliArgs, CargoMakeError> {
-    cli::run_cli(command_name, sub_command)
+pub fn run_cli(command_name: String) -> Result<CliArgs, CargoMakeError> {
+    cli::run_cli(command_name)
 }

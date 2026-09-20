@@ -174,10 +174,10 @@ pub fn run(
 }
 
 /// Handles the command line arguments and executes the runner.
-pub fn run_cli(command_name: String, sub_command: bool) -> Result<CliArgs, CargoMakeError> {
+pub fn run_cli(command_name: String) -> Result<CliArgs, CargoMakeError> {
     let global_config = config::load()?;
 
-    let cli_args = cli_parser::parse(&global_config, &command_name, sub_command)?;
+    let cli_args = cli_parser::parse(&global_config, &command_name)?;
 
     run(&cli_args, &global_config, None)?;
     Ok(cli_args)

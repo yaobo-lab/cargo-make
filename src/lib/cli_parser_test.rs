@@ -6,7 +6,6 @@ fn default_parse_cli_args(mut args: Vec<&str>) -> Result<CliArgs, CargoMakeError
     parse_args(
         &global_config,
         "makers",
-        false,
         Some(args),
         create_cli(&global_config, CliSpec::new(), true),
     )
@@ -64,7 +63,6 @@ fn parse_args_makers() {
     let cli_args = parse_args(
         &global_config,
         "makers",
-        false,
         Some(vec!["makers"]),
         create_cli(&global_config, CliSpec::new(), true),
     )
@@ -76,19 +74,18 @@ fn parse_args_makers() {
 }
 
 #[test]
-fn parse_args_cargo_make() {
+fn parse_args_kite() {
     let global_config = GlobalConfig::new();
     let cli_args = parse_args(
         &global_config,
-        "make",
-        true,
-        Some(vec!["cargo", "make"]),
+        "kite",
+        Some(vec!["kite"]),
         create_cli(&global_config, CliSpec::new(), true),
     )
     .unwrap();
 
     let mut expected = default_parsed_cli_args();
-    expected.command = "cargo make".to_string();
+    expected.command = "kite".to_string();
 
     assert_cli_args(&cli_args, &expected);
 }

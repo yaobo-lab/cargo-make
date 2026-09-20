@@ -25,17 +25,10 @@ fn get_args(
     cli_parsed: &CliParsed,
     global_config: &GlobalConfig,
     command_name: &str,
-    sub_command: bool,
 ) -> CliArgs {
     let mut cli_args = CliArgs::new();
 
-    cli_args.command = if sub_command {
-        let mut binary = "cargo ".to_string();
-        binary.push_str(command_name);
-        binary
-    } else {
-        command_name.to_string()
-    };
+    cli_args.command = command_name.to_string();
 
     cli_args.env = to_owned_vec(cli_parsed.argument_values.get("env"));
 
@@ -158,14 +151,13 @@ pub fn create_cli(global_config: &GlobalConfig, mut spec: CliSpec, default_meta:
                 author: Some(AUTHOR.to_string()),
                 version: Some(VERSION.to_string()),
                 description: Some(DESCRIPTION.to_string()),
-                project: Some("cargo-make".to_string()),
+                project: Some("kite".to_string()),
                 help_post_text: Some(
                     "See more info at: https://github.com/sagiegurari/cargo-make".to_string(),
                 ),
             }))
-            .add_command("makers")
-            .add_subcommand(vec!["cargo", "make"])
-            .add_subcommand(vec!["cargo-make", "make"]); // done by cargo
+            .add_command("kite")
+            .add_command("makers");
     }
     add_arguments(spec, default_task_name, default_log_level)
 }
@@ -481,7 +473,6 @@ fn add_arguments(spec: CliSpec, default_task_name: &str, default_log_level: &str
 pub fn parse_args(
     global_config: &GlobalConfig,
     command_name: &str,
-    sub_command: bool,
     args: Option<Vec<&str>>,
     spec: CliSpec,
 ) -> Result<CliArgs, CargoMakeError> {
@@ -514,7 +505,6 @@ pub fn parse_args(
             &cli_parsed,
             &global_config,
             command_name,
-            sub_command,
         ))
     }
 }
@@ -522,12 +512,10 @@ pub fn parse_args(
 pub fn parse(
     global_config: &GlobalConfig,
     command_name: &str,
-    sub_command: bool,
 ) -> Result<CliArgs, CargoMakeError> {
     parse_args(
         global_config,
         command_name,
-        sub_command,
         None,
         create_cli(&global_config, CliSpec::new(), true),
     )
